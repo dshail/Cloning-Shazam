@@ -1,45 +1,47 @@
-# **Enhancing Search Engine Relevance for Video Subtitles (Cloning Shazam) 🎬🔍**  
+# **Video Subtitle Search Engine (Cloning Shazam)** 🎬🔍
 
-## **📌 Overview**  
-This project focuses on improving **video subtitle search relevance** by leveraging **Natural Language Processing (NLP)** and **machine learning** techniques. It enables users to **search subtitles using audio input**, converting speech to text and retrieving the most relevant subtitle segments using **semantic search**.  
+## **Overview**  
+This project builds a **search engine for video subtitles** using **NLP** and **machine learning** to retrieve the most relevant subtitle segments based on **audio input**. It utilizes **semantic search** for better accuracy compared to traditional keyword-based search.
 
-## **🎯 Objective**  
-✅ Develop a **search engine for video subtitles** that retrieves relevant subtitles based on user queries.  
-✅ Compare **keyword-based** vs. **semantic search engines** to determine the best approach.  
-✅ Implement **cosine similarity** to rank relevant subtitle chunks.  
-✅ Use **AssemblyAI** for **audio transcription** and **ChromaDB** for **storing embeddings**.  
-
----
-
-## **🔬 Comparison: Keyword-Based vs. Semantic Search**  
-
-| Search Type       | Description | Pros | Cons |
-|------------------|-------------|------|------|
-| **Keyword-Based Search** | Relies on **exact keyword matches** between user queries and indexed subtitles. | Faster, simple implementation. | Cannot capture meaning or context. |
-| **Semantic Search** | Uses **word embeddings (BERT/SentenceTransformers)** to understand the **meaning and context** of the query. | More **accurate**, retrieves relevant results even when exact words don’t match. | Requires **vectorization and embedding storage**. |
-
-Semantic search provides **better relevance** and is the preferred method for this project.  
+## **Objectives**  
+- Develop a subtitle search engine that retrieves results based on audio queries.  
+- Compare **keyword-based** and **semantic search** methods.  
+- Use **cosine similarity** to rank subtitle relevance.  
+- Leverage **AssemblyAI** for audio transcription and **ChromaDB** for storing embeddings.
 
 ---
 
-## **🧠 Core Logic**  
+## **Search Methods**  
+
+| **Search Type**        | **Description**                                 | **Pros**                  | **Cons**                          |
+|------------------------|-------------------------------------------------|---------------------------|-----------------------------------|
+| **Keyword-Based**       | Matches exact keywords in queries and subtitles. | Simple & Fast             | Misses context & meaning.        |
+| **Semantic Search**     | Uses embeddings (e.g., BERT) for meaning/context.| More accurate & context-aware | Requires embeddings & storage. |
+
+---
+
+## **Core Logic**  
 
 ### **1️⃣ Data Preprocessing**  
-- Load the **subtitle database**.  
-- Apply **text cleaning** (e.g., remove timestamps).  
-- Convert subtitles into **vector representations** using:  
-  - **TF-IDF / BoW** (Keyword-Based Search)  
-  - **BERT (SentenceTransformers)** (Semantic Search)  
-- **Chunk subtitles** for better embedding representation.  
+- Load and clean subtitle data.  
+- Convert subtitles to vectors using:  
+  - **TF-IDF/BoW** (Keyword Search)  
+  - **BERT/SentenceTransformers** (Semantic Search)  
+- Chunk subtitles for better embeddings.
 
-### **2️⃣ Query Processing & Retrieval**  
-- Take **audio input** (2-minute clip from a movie/TV series).  
-- **Transcribe** the audio into text using **AssemblyAI**.  
-- Convert the **query text** into an embedding.  
-- Compute **cosine similarity** between **query embedding** and **stored subtitle embeddings**.  
-- Return **top-k most relevant** subtitle chunks.  
+### **2️⃣ Query Processing**  
+- Transcribe audio input with **AssemblyAI**.  
+- Convert the transcribed text to an embedding.  
+- Calculate **cosine similarity** to find top-k relevant subtitle chunks.
 
 ---
+
+## **Setup**  
+
+### **1️⃣ Install Dependencies**  
+Make sure you have **Python 3.8+** installed, then run:  
+```bash
+pip install streamlit assemblyai langchain_huggingface langchain_chroma sentence-transformers numpy scipy dotenv
 
 ## **🛠️ Setup Instructions**  
 
@@ -60,8 +62,6 @@ ASSEMBLYAI_API_KEY=your_api_key_here
 streamlit run app.py
 ```
 📌 Future Improvements
-Enhance accuracy with fine-tuned embeddings.
-
-Add YouTube video link support for search.
-
+Fine-tune embeddings for better accuracy.
+Add YouTube video link support.
 Implement real-time speech-to-subtitle matching.
