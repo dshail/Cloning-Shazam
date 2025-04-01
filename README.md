@@ -50,18 +50,18 @@ Ensure **Python 3.8+** is installed. Then, install the required libraries:
 ```bash
 pip install streamlit assemblyai langchain_huggingface langchain_chroma sentence-transformers numpy scipy dotenv
 ```
-## **2️⃣ Set Up Environment Variables
+### **2️⃣ Set Up Environment Variables**
 ### Create a .env file and add your AssemblyAI API key:
 
 ```
 ASSEMBLYAI_API_KEY=your_api_key_here
 ```
-## 3️⃣ Run the Streamlit App
+### **3️⃣ Run the Streamlit App**
 ### Launch the application with:
 ```
 streamlit run app.py
 ```
-📌 Future Improvements
-Fine-tune embeddings for better accuracy.
-Add YouTube video link support.
-Implement real-time speech-to-subtitle matching.
+## **📌 Future Improvements**
+- Fine-tune embeddings for better accuracy.
+- Add YouTube video link support.
+- Implement real-time speech-to-subtitle matching.
